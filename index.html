@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ScholarIS — Plateforme Intelligente de Bourses</title>
+
+  <!-- Feuilles de style -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <!-- Polices Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ================================================
+       BARRE DE NAVIGATION
+       Responsable : Richi
+  ================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="logo">Scholar<span>IS</span></a>
+
+      <!-- Liens de navigation -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#section-apropos">À propos</a></li>
+        <li><a href="#section-fonctionnement">Fonctionnement</a></li>
+        <li><a href="#section-criteres">Critères</a></li>
+        <li><a href="pages/equipe.html">Équipe</a></li>
+        <li><a href="pages/contact.html" class="btn-nav">Candidater</a></li>
+      </ul>
+
+      <!-- Bouton menu mobile -->
+      <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
+    </div>
+  </nav>
+
+
+  <!-- ================================================
+       SECTION HERO (Accueil)
+       Responsable : Grace (contenu) + Richi (intégration)
+  ================================================ -->
+  <section class="hero" id="accueil">
+
+    <!-- Fond décoratif -->
+    <div class="hero-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="grille"></div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="hero-contenu">
+      <div class="hero-badge">✦ Propulsé par l'Intelligence Artificielle</div>
+
+      <h1>Des bourses attribuées<br/><em>avec justesse</em></h1>
+
+      <p class="hero-description">
+        ScholarIS analyse chaque profil étudiant en profondeur — mérite,
+        progression, contexte — pour distribuer les bourses à ceux qui en ont
+        <strong>vraiment besoin</strong>.
+      </p>
+
+      <!-- Boutons d'action -->
+      <div class="hero-boutons">
+        <a href="#section-fonctionnement" class="btn-primaire">Découvrir la plateforme</a>
+        <a href="#section-criteres" class="btn-fantome">Voir les critères</a>
+      </div>
+
+      <!-- Statistiques rapides -->
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-chiffre">360°</span>
+          <span class="stat-label">Analyse du profil</span>
+        </div>
+        <div class="separateur-stat"></div>
+        <div class="stat">
+          <span class="stat-chiffre">IA</span>
+          <span class="stat-label">Décision assistée</span>
+        </div>
+        <div class="separateur-stat"></div>
+        <div class="stat">
+          <span class="stat-chiffre">100%</span>
+          <span class="stat-label">Transparent</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visuel décoratif (orbe animé) -->
+    <div class="hero-visuel">
+      <div class="carte-flottante carte-1">
+        <span class="carte-icone">📈</span>
+        <div>
+          <strong>Progression +18%</strong><br/>
+          <small>Score réévalué</small>
+        </div>
+      </div>
+      <div class="carte-flottante carte-2">
+        <span class="carte-icone">🎓</span>
+        <div>
+          <strong>Bourse accordée</strong><br/>
+          <small>Profil validé</small>
+        </div>
+      </div>
+      <div class="orbe-central">
+        <div class="orbe-anneau"></div>
+        <div class="orbe-anneau orbe-anneau-2"></div>
+        <div class="orbe-noyau">IS</div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ================================================
+       SECTION À PROPOS
+       Responsable : Grace
+  ================================================ -->
+  <section class="section-apropos" id="section-apropos">
+    <div class="conteneur">
+
+      <div class="entete-section">
+        <span class="etiquette-section">Notre mission</span>
+        <h2>L'équité au cœur<br/>de chaque décision</h2>
+      </div>
+
+      <div class="grille-apropos">
+
+        <!-- Texte de présentation -->
+        <div class="apropos-texte">
+          <p>
+            Les systèmes traditionnels d'attribution de bourses se basent souvent
+            uniquement sur les notes brutes. ScholarIS va beaucoup plus loin.
+          </p>
+          <p>
+            Notre plateforme prend en compte <strong>l'ensemble du parcours étudiant</strong> :
+            les résultats académiques, mais aussi la progression dans le temps,
+            les efforts de rattrapage après un échec, et le contexte social.
+          </p>
+          <p>
+            Parce qu'un étudiant qui s'est relevé après une difficulté mérite
+            autant d'être soutenu que celui qui n'en a jamais rencontré.
+          </p>
+        </div>
+
+        <!-- Cartes de valeurs -->
+        <div class="grille-cartes-apropos">
+          <div class="carte-apropos">
+            <div class="carte-icone-apropos">🧠</div>
+            <h4>Analyse intelligente</h4>
+            <p>Algorithmes qui croisent des dizaines de variables pour un score juste.</p>
+          </div>
+          <div class="carte-apropos">
+            <div class="carte-icone-apropos">📊</div>
+            <h4>Données multi-sources</h4>
+            <p>Notes, effectifs, trajectoires et indicateurs socio-économiques.</p>
+          </div>
+          <div class="carte-apropos">
+            <div class="carte-icone-apropos">🔍</div>
+            <h4>Traçabilité totale</h4>
+            <p>Chaque décision est expliquée pour garantir la transparence.</p>
+          </div>
+          <div class="carte-apropos">
+            <div class="carte-icone-apropos">⚖️</div>
+            <h4>Équité prouvée</h4>
+            <p>Des critères définis collectivement, appliqués uniformément.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       SECTION FONCTIONNEMENT
+       Responsable : Richi (HTML) + Grace (contenu)
+  ================================================ -->
+  <section class="section-fonctionnement" id="section-fonctionnement">
+    <div class="conteneur">
+
+      <div class="entete-section clair">
+        <span class="etiquette-section">Processus</span>
+        <h2>Comment ça fonctionne ?</h2>
+      </div>
+
+      <!-- Étapes du processus -->
+      <div class="etapes">
+
+        <div class="etape">
+          <div class="etape-numero">01</div>
+          <h3>Collecte des données</h3>
+          <p>L'étudiant soumet son dossier complet : relevés de notes, historique académique et informations personnelles.</p>
+        </div>
+
+        <div class="etape-fleche">→</div>
+
+        <div class="etape">
+          <div class="etape-numero">02</div>
+          <h3>Analyse IA 360°</h3>
+          <p>Notre moteur analyse chaque profil en tenant compte de tous les critères, y compris la progression et le rattrapage.</p>
+        </div>
+
+        <div class="etape-fleche">→</div>
+
+        <div class="etape">
+          <div class="etape-numero">03</div>
+          <h3>Score de mérite</h3>
+          <p>Un score composite est calculé, reflétant à la fois le niveau actuel et la dynamique positive du parcours.</p>
+        </div>
+
+        <div class="etape-fleche">→</div>
+
+        <div class="etape">
+          <div class="etape-numero">04</div>
+          <h3>Attribution des bourses</h3>
+          <p>Les bourses sont attribuées aux candidats les mieux classés selon les critères définis.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       SECTION CRITÈRES
+       Responsable : Grace
+  ================================================ -->
+  <section class="section-criteres" id="section-criteres">
+    <div class="conteneur">
+
+      <div class="entete-section">
+        <span class="etiquette-section">Critères d'évaluation</span>
+        <h2>Ce que nous analysons</h2>
+        <p class="entete-sous-titre">
+          ScholarIS ne réduit pas un étudiant à ses seules notes.
+        </p>
+      </div>
+
+      <div class="grille-criteres">
+
+        <!-- Critère principal (mis en avant) -->
+        <div class="critere critere-principal">
+          <div class="critere-icone">📝</div>
+          <h4>Résultats académiques</h4>
+          <p>Moyenne générale, notes par matière, mentions obtenues.</p>
+          <div class="critere-poids">Poids : Élevé</div>
+        </div>
+
+        <div class="critere">
+          <div class="critere-icone">📈</div>
+          <h4>Trajectoire de progression</h4>
+          <p>Évolution des résultats dans le temps. Un étudiant en amélioration est valorisé.</p>
+          <div class="critere-poids">Poids : Élevé</div>
+        </div>
+
+        <div class="critere">
+          <div class="critere-icone">🔄</div>
+          <h4>Capacité de rebond</h4>
+          <p>Récupération après un échec. Le rattrapage est une preuve de résilience.</p>
+          <div class="critere-poids">Poids : Moyen</div>
+        </div>
+
+        <div class="critere">
+          <div class="critere-icone">👥</div>
+          <h4>Effectif et contexte</h4>
+          <p>Niveau de la promotion, difficulté des filières et ratio candidats/bourses.</p>
+          <div class="critere-poids">Poids : Moyen</div>
+        </div>
+
+        <div class="critere">
+          <div class="critere-icone">🏠</div>
+          <h4>Situation socio-économique</h4>
+          <p>Ressources familiales et nécessité financière prises en compte.</p>
+          <div class="critere-poids">Poids : Élevé</div>
+        </div>
+
+        <div class="critere">
+          <div class="critere-icone">🌟</div>
+          <h4>Engagement & assiduité</h4>
+          <p>Présence aux cours et implication dans la vie académique.</p>
+          <div class="critere-poids">Poids : Moyen</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       FOOTER
+       Responsable : Mai
+  ================================================ -->
+  <footer class="footer">
+    <div class="conteneur">
+      <div class="footer-contenu">
+
+        <div class="footer-marque">
+          <a href="index.html" class="logo">Scholar<span>IS</span></a>
+          <p>Plateforme intelligente d'attribution de bourses étudiantes.</p>
+        </div>
+
+        <div class="footer-liens">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#section-apropos">À propos</a></li>
+            <li><a href="#section-fonctionnement">Fonctionnement</a></li>
+            <li><a href="#section-criteres">Critères</a></li>
+            <li><a href="pages/equipe.html">Équipe</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-liens">
+          <h5>Projet</h5>
+          <ul>
+            <li><a href="#">GitHub →</a></li>
+            <li><a href="#">Trello →</a></li>
+            <li><a href="pages/contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bas">
+        <p>© 2026 ScholarIS — Groupe ISI · Atelier Créatif · Samba B. KANE</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script principal -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
