@@ -1,0 +1,94 @@
+/* ============================================================
+   ScholarIS — animations.css
+   Toutes les animations du site
+   Responsable : Richi
+
+   TABLE DES MATIÈRES :
+   1. Keyframes (définitions des animations)
+   2. Classes d'animation réutilisables
+   3. Animations au scroll (révélation)
+============================================================ */
+
+
+/* ============================================================
+   1. KEYFRAMES
+============================================================ */
+
+/* Entrée depuis le bas */
+@keyframes entrer-bas {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Flottement vertical (cartes hero) */
+@keyframes flotter {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+/* Rotation (anneaux de l'orbe) */
+@keyframes tourner {
+  to { transform: rotate(360deg); }
+}
+
+/* Mouvement des blobs de fond */
+@keyframes bouger-blob {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 20px) scale(1.08); }
+}
+
+/* Apparition progressive */
+@keyframes apparaitre {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+/* ============================================================
+   2. CLASSES D'ANIMATION RÉUTILISABLES
+============================================================ */
+
+/* Animation d'entrée du hero */
+.hero-contenu {
+  animation: entrer-bas 0.8s ease both;
+}
+
+/* Classe utilitaire pour appliquer l'animation */
+.animer-entree {
+  animation: entrer-bas 0.6s ease both;
+}
+
+
+/* ============================================================
+   3. ANIMATIONS AU SCROLL (Révélation)
+   Ces classes sont gérées par le JavaScript (main.js)
+   L'élément part invisible, devient visible quand il entre
+   dans le champ de vision.
+============================================================ */
+
+/* État initial : invisible */
+.a-reveler {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* État final : visible (ajouté par JS) */
+.a-reveler.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Délais pour animer les enfants un par un */
+.a-reveler:nth-child(1) { transition-delay: 0s;    }
+.a-reveler:nth-child(2) { transition-delay: 0.08s; }
+.a-reveler:nth-child(3) { transition-delay: 0.16s; }
+.a-reveler:nth-child(4) { transition-delay: 0.24s; }
+.a-reveler:nth-child(5) { transition-delay: 0.32s; }
+.a-reveler:nth-child(6) { transition-delay: 0.40s; }

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Admin — ScholarIS</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/admin.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+</head>
+<body class="admin-body">
+
+  <!-- ================================================
+       DASHBOARD ADMINISTRATEUR — ScholarIS
+       Responsable : Baba Sarr (Chef de projet)
+
+       Fonctionnalités :
+       ✓ Statistiques en temps réel
+       ✓ Liste de toutes les candidatures
+       ✓ Filtre par statut (sidebar)
+       ✓ Recherche par nom / email / filière
+       ✓ Changer le statut d'une candidature
+       ✓ Ajouter une note admin
+  ================================================ -->
+
+
+  <!-- ── SIDEBAR ────────────────────────────────── -->
+  <aside class="sidebar">
+
+    <div class="sidebar-logo">
+      <a href="../index.html" class="logo">Scholar<span>IS</span></a>
+      <span class="sidebar-tag">Admin</span>
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <a href="#" class="sidebar-link actif" data-filtre="tous">
+        <span>📊</span> Dashboard
+      </a>
+
+      <a href="#" class="sidebar-link" data-filtre="en_attente">
+        <span>⏳</span> En attente
+        <span class="badge" id="badge-en_attente">0</span>
+      </a>
+
+      <a href="#" class="sidebar-link" data-filtre="en_traitement">
+        <span>🔄</span> En traitement
+        <span class="badge badge-bleu" id="badge-en_traitement">0</span>
+      </a>
+
+      <a href="#" class="sidebar-link" data-filtre="validee">
+        <span>✅</span> Validées
+        <span class="badge badge-vert" id="badge-validee">0</span>
+      </a>
+
+      <a href="#" class="sidebar-link" data-filtre="refusee">
+        <span>❌</span> Refusées
+        <span class="badge badge-rouge" id="badge-refusee">0</span>
+      </a>
+
+    </nav>
+
+    <!-- Bouton de test connexion -->
+    <div class="sidebar-test">
+      <button onclick="testerConnexion()" class="btn-tester">
+        🔌 Tester MySQL
+      </button>
+      <div id="statut-connexion" class="statut-connexion"></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="admin-info">
+        <div class="admin-avatar">👨‍💼</div>
+        <div>
+          <strong>Baba Sarr</strong>
+          <small>Chef de projet</small>
+        </div>
+      </div>
+      <a href="../index.html" class="btn-retour">← Site public</a>
+    </div>
+
+  </aside>
+
+
+  <!-- ── CONTENU PRINCIPAL ──────────────────────── -->
+  <main class="admin-main">
+
+    <!-- En-tête -->
+    <div class="admin-header">
+      <div>
+        <h1 id="titre-section">Toutes les candidatures</h1>
+        <p id="sous-titre-section">Vue d'ensemble de toutes les candidatures reçues</p>
+      </div>
+      <div class="header-actions">
+        <span class="date-maj">Actualisé à <span id="heure-maj">--:--</span></span>
+        <button class="btn-actualiser" onclick="chargerDonnees()">🔄 Actualiser</button>
+      </div>
+    </div>
+
+    <!-- Cartes statistiques -->
+    <div class="stats-grille">
+
+      <div class="stat-card">
+        <div class="stat-card-icone">📋</div>
+        <div class="stat-card-contenu">
+          <span class="stat-card-nombre" id="stat-total">—</span>
+          <span class="stat-card-label">Total candidatures</span>
+        </div>
+      </div>
+
+      <div class="stat-card stat-card--orange">
+        <div class="stat-card-icone">⏳</div>
+        <div class="stat-card-contenu">
+          <span class="stat-card-nombre" id="stat-attente">—</span>
+          <span class="stat-card-label">En attente</span>
+        </div>
+      </div>
+
+      <div class="stat-card stat-card--bleu">
+        <div class="stat-card-icone">🔄</div>
+        <div class="stat-card-contenu">
+          <span class="stat-card-nombre" id="stat-traitement">—</span>
+          <span class="stat-card-label">En traitement</span>
+        </div>
+      </div>
+
+      <div class="stat-card stat-card--vert">
+        <div class="stat-card-icone">✅</div>
+        <div class="stat-card-contenu">
+          <span class="stat-card-nombre" id="stat-validees">—</span>
+          <span class="stat-card-label">Validées</span>
+        </div>
+      </div>
+
+      <div class="stat-card stat-card--rouge">
+        <div class="stat-card-icone">❌</div>
+        <div class="stat-card-contenu">
+          <span class="stat-card-nombre" id="stat-refusees">—</span>
+          <span class="stat-card-label">Refusées</span>
+        </div>
+      </div>
+
+      <div class="stat-card stat-card--violet">
+        <div class="stat-card-icone">📈</div>
+        <div class="stat-card-contenu">
+          <span class="stat-card-nombre" id="stat-taux">—%</span>
+          <span class="stat-card-label">Taux de validation</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Barre de recherche -->
+    <div class="barre-recherche">
+      <input
+        type="text"
+        id="champ-recherche"
+        placeholder="🔍 Rechercher par nom, email ou filière..."
+        oninput="filtrerTableau()"
+      />
+    </div>
+
+    <!-- Tableau candidatures -->
+    <div class="tableau-wrap">
+      <table class="tableau-candidatures">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Candidat</th>
+            <th>Filière / Année</th>
+            <th>Moyenne</th>
+            <th>Score IA</th>
+            <th>Statut</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="corps-tableau">
+          <tr>
+            <td colspan="8" class="chargement">
+              Connexion à MySQL en cours...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+
+  <!-- ── MODAL DÉTAIL ───────────────────────────── -->
+  <div class="modal-overlay" id="modal-overlay" onclick="fermerModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+
+      <div class="modal-header">
+        <h3 id="modal-titre">Détail de la candidature</h3>
+        <button class="modal-fermer" onclick="fermerModal()">✕</button>
+      </div>
+
+      <div class="modal-corps" id="modal-corps">
+        <!-- Rempli par JavaScript -->
+      </div>
+
+      <div class="modal-footer">
+        <div class="groupe-champ">
+          <label>Note de l'administrateur :</label>
+          <textarea id="note-admin" placeholder="Ajouter une note sur cette candidature..."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-statut btn-attente"    onclick="changerStatut('en_attente')">⏳ En attente</button>
+          <button class="btn-statut btn-traitement" onclick="changerStatut('en_traitement')">🔄 En traitement</button>
+          <button class="btn-statut btn-valider"    onclick="changerStatut('validee')">✅ Valider</button>
+          <button class="btn-statut btn-refuser"    onclick="changerStatut('refusee')">❌ Refuser</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/admin.js"></script>
+
+</body>
+</html>

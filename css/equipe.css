@@ -1,0 +1,215 @@
+/* ============================================================
+   ScholarIS — equipe.css
+   Styles spécifiques à la page Équipe
+   Responsable : Grace (design) + Richi (intégration)
+============================================================ */
+
+
+/* ── En-tête de page ── */
+.page-header {
+  padding: 140px 24px 80px;
+  background: var(--couleur-fond-clair);
+  text-align: center;
+}
+
+.page-header h1 {
+  font-family: var(--police-titre);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin: 14px 0 16px;
+  color: var(--couleur-primaire);
+}
+
+.page-header p {
+  font-size: 1.05rem;
+  color: var(--couleur-texte-mute);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Lien actif dans la navbar */
+.lien-actif {
+  color: var(--couleur-accent) !important;
+  font-weight: 600 !important;
+}
+
+
+/* ── Section équipe ── */
+.section-equipe {
+  padding: 80px 0 100px;
+  background: var(--couleur-blanc);
+}
+
+.grille-equipe {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+
+/* ── Carte membre ── */
+.carte-membre {
+  display: flex;
+  gap: 24px;
+  background: var(--couleur-fond-clair);
+  border-radius: var(--rayon);
+  padding: 28px;
+  border: 1px solid var(--couleur-bordure);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.carte-membre:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ombre);
+}
+
+/* Avatar circulaire coloré */
+.membre-avatar {
+  width: 80px;
+  height: 80px;
+  min-width: 80px; /* Pour éviter que l'avatar se rétrécisse */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+/* Couleurs différentes par membre */
+.avatar-baba  { background: linear-gradient(135deg, #FFE0B2, #FF9800); }
+.avatar-richi { background: linear-gradient(135deg, #B3E5FC, #03A9F4); }
+.avatar-grace { background: linear-gradient(135deg, #E1BEE7, #9C27B0); }
+.avatar-mai   { background: linear-gradient(135deg, #C8E6C9, #4CAF50); }
+
+
+/* Informations du membre */
+.membre-info {
+  flex: 1;
+}
+
+.membre-info h3 {
+  font-family: var(--police-titre);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--couleur-primaire);
+  margin-bottom: 4px;
+}
+
+.membre-role {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--couleur-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.membre-info > p {
+  font-size: 0.9rem;
+  color: var(--couleur-texte-mute);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* Liste des tâches du membre */
+.membre-taches h4 {
+  font-family: var(--police-titre);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--couleur-primaire);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.membre-taches ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.membre-taches ul li {
+  font-size: 0.83rem;
+  color: var(--couleur-texte-mute);
+  line-height: 1.5;
+}
+
+
+/* ── Encart collaboration ── */
+.encart-collaboration {
+  background: linear-gradient(135deg, var(--couleur-primaire), #1a3d6b);
+  border-radius: var(--rayon);
+  padding: 36px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.collab-icone {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.collab-texte {
+  flex: 1;
+  min-width: 200px;
+}
+
+.collab-texte h3 {
+  font-family: var(--police-titre);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.collab-texte p {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.7;
+}
+
+.collab-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.tag {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .grille-equipe {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .carte-membre {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .membre-taches ul {
+    align-items: center;
+  }
+  .collab-tags {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

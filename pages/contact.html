@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Candidater — ScholarIS</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/animations.css"/>
+  <link rel="stylesheet" href="../css/contact.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">Scholar<span>IS</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html#section-apropos">À propos</a></li>
+        <li><a href="../index.html#section-fonctionnement">Fonctionnement</a></li>
+        <li><a href="../index.html#section-criteres">Critères</a></li>
+        <li><a href="equipe.html">Équipe</a></li>
+        <li><a href="contact.html" class="btn-nav">Candidater</a></li>
+      </ul>
+      <button class="burger" id="burger">&#9776;</button>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <div class="conteneur">
+      <span class="etiquette-section">Candidature</span>
+      <h1>Soumettre ma candidature</h1>
+      <p>Remplis le formulaire. Ton dossier sera analysé automatiquement par notre système intelligent.</p>
+    </div>
+  </section>
+
+  <section class="section-contact">
+    <div class="conteneur">
+      <div class="grille-contact">
+
+        <div class="contact-infos">
+          <h2>Pourquoi candidater ?</h2>
+          <p>ScholarIS analyse ton profil complet pour attribuer les bourses de manière juste et transparente.</p>
+          <div class="liste-infos">
+            <div class="info-item">
+              <div class="info-icone">📧</div>
+              <div><strong>Email</strong><span>scholaris@groupe-isi.sn</span></div>
+            </div>
+            <div class="info-item">
+              <div class="info-icone">🏫</div>
+              <div><strong>Établissement</strong><span>Groupe ISI — Dakar, Sénégal</span></div>
+            </div>
+            <div class="info-item">
+              <div class="info-icone">⚡</div>
+              <div><strong>Traitement</strong><span>Score IA calculé automatiquement</span></div>
+            </div>
+          </div>
+          <div class="encart-equipe">
+            <h4>🎓 Géré par</h4>
+            <p><strong>Baba Sarr</strong> — Chef de projet ScholarIS</p>
+            <p>Groupe ISI · 2ème Année</p>
+          </div>
+        </div>
+
+        <div class="formulaire-wrap">
+          <h3>Dossier de candidature</h3>
+
+          <div class="groupe-champ">
+            <label>Nom complet *</label>
+            <input type="text" id="champ-nom" placeholder="Prénom et nom"/>
+          </div>
+          <div class="groupe-champ">
+            <label>Email *</label>
+            <input type="email" id="champ-email" placeholder="votre@email.com"/>
+          </div>
+          <div class="ligne-double">
+            <div class="groupe-champ">
+              <label>Filière *</label>
+              <input type="text" id="champ-filiere" placeholder="Ex: Génie Logiciel"/>
+            </div>
+            <div class="groupe-champ">
+              <label>Année *</label>
+              <select id="champ-annee">
+                <option value="">-- Choisir --</option>
+                <option>1ère année</option>
+                <option>2ème année</option>
+                <option>3ème année</option>
+                <option>4ème année</option>
+                <option>5ème année</option>
+              </select>
+            </div>
+          </div>
+          <div class="ligne-double">
+            <div class="groupe-champ">
+              <label>Moyenne générale *</label>
+              <input type="number" id="champ-moyenne" placeholder="Ex: 13.5" min="0" max="20" step="0.1"/>
+            </div>
+            <div class="groupe-champ">
+              <label>Situation socio-éco. *</label>
+              <select id="champ-situation">
+                <option value="">-- Choisir --</option>
+                <option value="difficile">Difficile</option>
+                <option value="modeste">Modeste</option>
+                <option value="aisée">Aisée</option>
+              </select>
+            </div>
+          </div>
+          <div class="groupe-champ">
+            <label>Message de motivation *</label>
+            <textarea id="champ-message" placeholder="Décris ta situation, ta progression, ton parcours... Mentionne si tu t'es rattrapé après un échec !"></textarea>
+          </div>
+
+          <button class="btn-primaire btn-large" id="btn-envoyer" onclick="envoyerCandidature()">
+            Soumettre ma candidature →
+          </button>
+
+          <div id="message-resultat" style="display:none;"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="conteneur">
+      <div class="footer-contenu">
+        <div class="footer-marque">
+          <a href="../index.html" class="logo">Scholar<span>IS</span></a>
+          <p>Plateforme intelligente d'attribution de bourses étudiantes.</p>
+        </div>
+        <div class="footer-liens">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="equipe.html">Équipe</a></li>
+            <li><a href="contact.html">Candidater</a></li>
+          </ul>
+        </div>
+        <div class="footer-liens">
+          <h5>Projet</h5>
+          <ul>
+            <li><a href="#">GitHub →</a></li>
+            <li><a href="#">Trello →</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bas">
+        <p>© 2026 ScholarIS — Groupe ISI · Atelier Créatif · Samba B. KANE</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/contact.js"></script>
+</body>
+</html>

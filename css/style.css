@@ -1,0 +1,809 @@
+/* ============================================================
+   ScholarIS — style.css
+   Feuille de style principale
+   Responsable : Richi
+
+   TABLE DES MATIÈRES :
+   1. Variables CSS (couleurs, polices, espacements)
+   2. Reset & base
+   3. Composants réutilisables (boutons, conteneur, entêtes)
+   4. Navbar
+   5. Section Hero
+   6. Section À propos
+   7. Section Fonctionnement
+   8. Section Critères
+   9. Footer
+   10. Responsive (mobile)
+============================================================ */
+
+
+/* ============================================================
+   1. VARIABLES CSS
+============================================================ */
+:root {
+  /* Couleurs principales */
+  --couleur-primaire   : #0A2540;   /* Bleu nuit foncé */
+  --couleur-accent     : #7B61FF;   /* Violet */
+  --couleur-accent2    : #00D4FF;   /* Cyan */
+  --couleur-fond-clair : #F7F9FC;   /* Gris très clair */
+  --couleur-texte-mute : #6B7A90;   /* Gris texte secondaire */
+  --couleur-bordure    : #E4EAF2;   /* Gris bordure */
+  --couleur-blanc      : #ffffff;
+  --couleur-sombre     : #060E1A;   /* Fond footer */
+
+  /* Polices */
+  --police-titre : 'Syne', sans-serif;
+  --police-corps : 'DM Sans', sans-serif;
+
+  /* Rayons (arrondis) */
+  --rayon       : 16px;
+  --rayon-petit : 8px;
+
+  /* Ombres */
+  --ombre        : 0 4px 32px rgba(10, 37, 64, 0.10);
+  --ombre-grande : 0 16px 60px rgba(10, 37, 64, 0.18);
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* Défilement doux lors des clics sur les ancres */
+}
+
+body {
+  font-family: var(--police-corps);
+  background-color: var(--couleur-blanc);
+  color: var(--couleur-primaire);
+  line-height: 1.6;
+  overflow-x: hidden; /* Évite le défilement horizontal indésirable */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+/* ============================================================
+   3. COMPOSANTS RÉUTILISABLES
+============================================================ */
+
+/* -- Conteneur centré -- */
+.conteneur {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* -- Bouton principal (fond sombre) -- */
+.btn-primaire {
+  display: inline-block;
+  background: var(--couleur-primaire);
+  color: var(--couleur-blanc);
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-family: var(--police-titre);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-primaire:hover {
+  background: var(--couleur-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(123, 97, 255, 0.35);
+}
+
+/* -- Bouton fantôme (contour) -- */
+.btn-fantome {
+  display: inline-block;
+  background: transparent;
+  color: var(--couleur-primaire);
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-family: var(--police-titre);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 2px solid var(--couleur-bordure);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-fantome:hover {
+  border-color: var(--couleur-accent);
+  color: var(--couleur-accent);
+}
+
+/* -- Entête de section (titre + étiquette) -- */
+.entete-section {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.etiquette-section {
+  display: inline-block;
+  background: rgba(123, 97, 255, 0.1);
+  color: var(--couleur-accent);
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* Entête sur fond sombre (section fonctionnement) */
+.entete-section.clair h2 {
+  color: var(--couleur-blanc);
+}
+.entete-section.clair .etiquette-section {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--couleur-accent2);
+}
+
+.entete-section h2 {
+  font-family: var(--police-titre);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.entete-sous-titre {
+  margin-top: 14px;
+  color: var(--couleur-texte-mute);
+  font-size: 1rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -- Logo -- */
+.logo {
+  font-family: var(--police-titre);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--couleur-primaire);
+}
+.logo span {
+  color: var(--couleur-accent);
+}
+
+
+/* ============================================================
+   4. NAVBAR
+============================================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--couleur-bordure);
+  transition: box-shadow 0.3s;
+}
+
+/* Ombre ajoutée au scroll (via JS) */
+.navbar.avec-ombre {
+  box-shadow: var(--ombre);
+}
+
+.nav-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--couleur-primaire);
+  transition: color 0.2s;
+}
+.nav-links a:hover {
+  color: var(--couleur-accent);
+}
+
+/* Bouton "Candidater" dans la nav */
+.btn-nav {
+  background: var(--couleur-primaire);
+  color: var(--couleur-blanc) !important;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 600 !important;
+  transition: background 0.2s !important;
+}
+.btn-nav:hover {
+  background: var(--couleur-accent) !important;
+}
+
+/* Bouton burger (mobile) */
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--couleur-primaire);
+}
+
+
+/* ============================================================
+   5. SECTION HERO
+============================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 24px 60px;
+  position: relative;
+  overflow: hidden;
+  background: var(--couleur-fond-clair);
+}
+
+/* Fond décoratif */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Formes arrondies floues (blobs) */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+}
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #7B61FF 0%, transparent 70%);
+  top: -150px;
+  right: -100px;
+  animation: bouger-blob 8s ease-in-out infinite alternate;
+}
+.blob-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #00D4FF 0%, transparent 70%);
+  bottom: -100px;
+  left: -50px;
+  animation: bouger-blob 10s ease-in-out infinite alternate-reverse;
+}
+
+/* Grille de fond */
+.grille {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(10, 37, 64, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 37, 64, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Contenu texte du hero */
+.hero-contenu {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+}
+
+/* Badge IA */
+.hero-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(123, 97, 255, 0.1), rgba(0, 212, 255, 0.1));
+  border: 1px solid rgba(123, 97, 255, 0.25);
+  color: var(--couleur-accent);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+
+.hero-contenu h1 {
+  font-family: var(--police-titre);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+/* Mise en valeur du mot clé en dégradé */
+.hero-contenu h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--couleur-accent), var(--couleur-accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--couleur-texte-mute);
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+.hero-description strong {
+  color: var(--couleur-primaire);
+}
+
+/* Boutons d'action */
+.hero-boutons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+/* Statistiques rapides */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.stat {
+  text-align: center;
+}
+.stat-chiffre {
+  display: block;
+  font-family: var(--police-titre);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--couleur-primaire);
+}
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--couleur-texte-mute);
+  font-weight: 500;
+}
+.separateur-stat {
+  width: 1px;
+  height: 40px;
+  background: var(--couleur-bordure);
+}
+
+/* Visuel décoratif côté droit */
+.hero-visuel {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 380px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Orbe central animé */
+.orbe-central {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orbe-anneau {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(123, 97, 255, 0.3);
+  animation: tourner 12s linear infinite;
+}
+.orbe-anneau-2 {
+  inset: -20px;
+  border-color: rgba(0, 212, 255, 0.2);
+  animation: tourner 18s linear infinite reverse;
+}
+.orbe-noyau {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--couleur-primaire), var(--couleur-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--police-titre);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: white;
+  box-shadow: 0 0 40px rgba(123, 97, 255, 0.5);
+  z-index: 2;
+}
+
+/* Cartes flottantes autour de l'orbe */
+.carte-flottante {
+  position: absolute;
+  background: white;
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--ombre-grande);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.carte-flottante strong {
+  font-weight: 700;
+}
+.carte-flottante small {
+  color: var(--couleur-texte-mute);
+}
+.carte-icone {
+  font-size: 1.4rem;
+}
+.carte-1 {
+  top: 30px;
+  left: 0;
+  animation: flotter 3s ease-in-out infinite alternate;
+}
+.carte-2 {
+  bottom: 40px;
+  right: 0;
+  animation: flotter 3s ease-in-out 1s infinite alternate;
+}
+
+
+/* ============================================================
+   6. SECTION À PROPOS
+============================================================ */
+.section-apropos {
+  padding: 100px 0;
+  background: var(--couleur-blanc);
+}
+
+.grille-apropos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.apropos-texte p {
+  margin-bottom: 18px;
+  color: var(--couleur-texte-mute);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.apropos-texte p strong {
+  color: var(--couleur-primaire);
+}
+
+.grille-cartes-apropos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.carte-apropos {
+  background: var(--couleur-fond-clair);
+  border-radius: var(--rayon);
+  padding: 24px;
+  border: 1px solid var(--couleur-bordure);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.carte-apropos:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ombre);
+}
+.carte-icone-apropos {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.carte-apropos h4 {
+  font-family: var(--police-titre);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.carte-apropos p {
+  font-size: 0.85rem;
+  color: var(--couleur-texte-mute);
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   7. SECTION FONCTIONNEMENT
+============================================================ */
+.section-fonctionnement {
+  padding: 100px 0;
+  background: var(--couleur-primaire);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Effet lumineux en fond */
+.section-fonctionnement::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(123, 97, 255, 0.2) 0%, transparent 60%);
+}
+
+/* Étapes */
+.etapes {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.etape {
+  flex: 1;
+  min-width: 180px;
+  padding: 0 8px;
+}
+
+.etape-fleche {
+  font-size: 1.8rem;
+  color: var(--couleur-accent2);
+  opacity: 0.6;
+  padding-top: 24px;
+  flex-shrink: 0;
+}
+
+.etape-numero {
+  font-family: var(--police-titre);
+  font-size: 3rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.08);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.etape h3 {
+  font-family: var(--police-titre);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--couleur-blanc);
+  margin-bottom: 10px;
+}
+
+.etape p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   8. SECTION CRITÈRES
+============================================================ */
+.section-criteres {
+  padding: 100px 0;
+  background: var(--couleur-fond-clair);
+}
+
+.grille-criteres {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.critere {
+  background: var(--couleur-blanc);
+  border-radius: var(--rayon);
+  padding: 28px;
+  border: 1px solid var(--couleur-bordure);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.critere:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ombre);
+}
+
+/* Critère principal mis en avant */
+.critere-principal {
+  background: linear-gradient(135deg, var(--couleur-primaire), #1a3d6b);
+  border-color: transparent;
+}
+.critere-principal h4,
+.critere-principal p {
+  color: white;
+}
+.critere-principal .critere-poids {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.critere-icone {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+}
+
+.critere h4 {
+  font-family: var(--police-titre);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.critere p {
+  font-size: 0.87rem;
+  color: var(--couleur-texte-mute);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+/* Badge de poids */
+.critere-poids {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(123, 97, 255, 0.1);
+  color: var(--couleur-accent);
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+
+
+/* ============================================================
+   9. FOOTER
+============================================================ */
+.footer {
+  background: var(--couleur-sombre);
+  padding: 60px 0 0;
+}
+
+.footer-contenu {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+}
+
+.footer-marque .logo {
+  color: var(--couleur-blanc);
+  font-size: 1.4rem;
+}
+.footer-marque p {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+}
+
+.footer-liens h5 {
+  font-family: var(--police-titre);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--couleur-blanc);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.footer-liens ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-liens a {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s;
+}
+.footer-liens a:hover {
+  color: var(--couleur-accent2);
+}
+
+.footer-bas {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 20px 0;
+  text-align: center;
+}
+.footer-bas p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+
+/* ============================================================
+   10. RESPONSIVE — MOBILE
+============================================================ */
+
+/* Tablette (max 1024px) */
+@media (max-width: 1024px) {
+  .hero-visuel {
+    display: none; /* On cache le visuel décoratif sur tablette */
+  }
+  .hero {
+    padding: 120px 24px 60px;
+  }
+  .grille-apropos {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .grille-criteres {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .etape-fleche {
+    display: none;
+  }
+  .etapes {
+    gap: 32px;
+  }
+}
+
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
+  /* Menu mobile caché par défaut */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--couleur-bordure);
+    gap: 16px;
+  }
+  /* Classe ajoutée par JS pour ouvrir le menu */
+  .nav-links.ouvert {
+    display: flex;
+  }
+  .burger {
+    display: block;
+  }
+
+  .hero-boutons {
+    flex-direction: column;
+  }
+  .hero-stats {
+    gap: 16px;
+  }
+  .grille-cartes-apropos {
+    grid-template-columns: 1fr;
+  }
+  .grille-criteres {
+    grid-template-columns: 1fr;
+  }
+  .footer-contenu {
+    grid-template-columns: 1fr;
+  }
+  .etapes {
+    flex-direction: column;
+  }
+}
