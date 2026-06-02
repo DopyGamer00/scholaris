@@ -1,4 +1,4 @@
-<?php
+<?php 
 /* ============================================================
    ScholarIS — database/connexion.php
    Connexion MySQL via PDO
