@@ -4,7 +4,7 @@
    Configuration de la base de données MySQL
    Responsable : Baba Sarr
 
-   ⚠️  C'est ICI que tu modifies si tu changes de machine.
+     C'est ICI que tu modifies si tu changes de machine.
    Ne touche à rien d'autre pour la connexion.
 ============================================================ */
 
