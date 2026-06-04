@@ -70,7 +70,7 @@ function testerConnexion() {
     .then(function (r) { return r.json(); })
     .then(function (data) {
       if (data.succes) {
-        div.textContent = '✅ MySQL connecté !';
+        div.textContent = '✅MySQL connecté !';
         div.className   = 'statut-connexion ok';
       } else {
         div.textContent = '❌ ' + data.message;
