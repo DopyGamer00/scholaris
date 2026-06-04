@@ -16,7 +16,7 @@ function envoyerCandidature() {
   var message   = document.getElementById('champ-message').value.trim();
 
   if (!nom || !email || !filiere || !annee || !moyenne || !situation || !message) {
-    afficherMessage('⚠️ Veuillez remplir tous les champs obligatoires.', 'erreur');
+    afficherMessage(' Veuillez remplir tous les champs obligatoires.', 'erreur');
     return;
   }
 
