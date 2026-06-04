@@ -43,7 +43,7 @@ navLinks.querySelectorAll('a').forEach(function (lien) {
   lien.addEventListener('click', function () {
     navLinks.classList.remove('ouvert');
   });
-});
+}); 
 
 
 /* ============================================================
